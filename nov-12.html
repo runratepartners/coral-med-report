@@ -1,0 +1,349 @@
+<!doctype html><html><head><meta name="robots" content="noindex,nofollow"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Coral Med KPI Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: one calm column on practice stationery. Summary, then one section per channel, then work done and next steps. */
+:root{
+  --canvas:#e9ebec; --paper:#ffffff; --soft:#f7f4ef; --soft2:#f2efe9;
+  --ink:#3d4a57; --muted:#6b7784; --kicker:#8aa2ad;
+  --gold:#c0a882; --btn:#d1bfa3; --line:#e4ded3; --pale:#e7dfd1;
+  --good:#4f7a5f; --goodbg:#e8f0ea; --warn:#9a6b1f; --warnbg:#f6eedd; --bad:#9b4b3a; --badbg:#f6e4df;
+  --serif:Georgia,"Times New Roman",serif;
+  --sans:Inter,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --canvas:#1d232a; --paper:#262e36; --soft:#2d353e; --soft2:#313a44;
+  --ink:#eef0f2; --muted:#aeb7c0; --kicker:#9fb6c0;
+  --gold:#cdb48c; --btn:#cdb48c; --line:#3a444f; --pale:#4a5560;
+  --good:#8fc0a0; --goodbg:#2b3a31; --warn:#e2b86a; --warnbg:#3d3424; --bad:#e49a87; --badbg:#3d2b27;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --canvas:#1d232a; --paper:#262e36; --soft:#2d353e; --soft2:#313a44;
+  --ink:#eef0f2; --muted:#aeb7c0; --kicker:#9fb6c0;
+  --gold:#cdb48c; --btn:#cdb48c; --line:#3a444f; --pale:#4a5560;
+  --good:#8fc0a0; --goodbg:#2b3a31; --warn:#e2b86a; --warnbg:#3d3424; --bad:#e49a87; --badbg:#3d2b27;
+  color-scheme:dark}
+body{background:var(--canvas);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6}
+.wrap{max-width:880px;margin:0 auto;padding-inline:16px;padding-block:32px 56px}
+.sheet{background:var(--paper);border-radius:6px;overflow:hidden}
+section{padding:38px clamp(20px,5vw,56px);border-top:1px solid var(--line)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5vw,40px);line-height:1.15}
+h2{font-size:clamp(23px,3.4vw,29px);line-height:1.2;margin-bottom:6px}
+h3{font-size:18px;line-height:1.3}
+p{margin:0;max-width:64ch}
+.kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--kicker);font-weight:600;margin-bottom:10px}
+.lede{color:var(--muted);margin-top:6px}
+.num{font-variant-numeric:tabular-nums}
+.mast{background:var(--soft);border-top:0}
+.brandrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:30px}
+.wordmark{font-family:var(--serif);font-size:22px}.wordmark span{color:var(--gold)}
+.meta{font-size:13px;color:var(--muted)}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:26px}
+.tile{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:16px}
+.tile b{display:block;font-family:var(--serif);font-weight:400;font-size:30px;line-height:1.1}
+.tile small{display:block;color:var(--muted);font-size:13px;line-height:1.4;margin-top:6px}
+.tile em{font-style:normal;font-size:12px;font-weight:600}
+.up{color:var(--good)}.down{color:var(--bad)}
+@media (max-width:680px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:22px}
+@media (max-width:640px){.grid2{grid-template-columns:1fr}}
+.box{background:var(--soft2);border-radius:6px;padding:18px 20px;min-width:0}
+.box h3{margin-bottom:10px}
+.stat{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}
+.stat:last-child{border-bottom:0}
+.stat span:last-child{font-variant-numeric:tabular-nums;font-weight:600}
+/* bars */
+.bars{display:grid;gap:9px;margin-top:6px}
+.br{display:grid;grid-template-columns:150px 1fr 74px;gap:10px;align-items:center;font-size:14px}
+.br .track{height:14px;background:var(--pale);border-radius:3px;overflow:hidden}
+.br .fill{height:100%;background:var(--ink)}
+.br .fill.gold{background:var(--gold)}
+.br .fill.bad{background:var(--bad)}
+.br .v{font-variant-numeric:tabular-nums;color:var(--muted);text-align:right}
+@media (max-width:520px){.br{grid-template-columns:110px 1fr 60px}}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+.call{margin-top:18px;border-left:3px solid var(--gold);padding:4px 0 4px 14px;font-size:15px}
+.chip{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:4px}
+.chip.good{background:var(--goodbg);color:var(--good)}.chip.warn{background:var(--warnbg);color:var(--warn)}.chip.bad{background:var(--badbg);color:var(--bad)}
+.done{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 24px}
+.done li{display:grid;grid-template-columns:20px 1fr;gap:8px;font-size:15px}
+.done li::before{content:"✓";color:var(--good);font-weight:700}
+@media (max-width:600px){.done{grid-template-columns:1fr}}
+.steps{display:grid;gap:12px;margin-top:16px}
+.step{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:0}
+@media (max-width:520px){.step{grid-template-columns:1fr;gap:6px}}
+.asks{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+.asks li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:15px}
+.cb{width:16px;height:16px;border:1.5px solid var(--gold);border-radius:3px;margin-top:4px}
+.sign{margin-top:28px;font-size:15px;color:var(--muted)}.sign strong{color:var(--ink);font-weight:600}
+.foot{text-align:center;font-size:12px;color:var(--muted);margin-top:18px}
+</style>
+
+<style>
+.tasks{display:grid;gap:0;margin-top:14px}
+.task{display:grid;grid-template-columns:96px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px;align-items:start}
+.task:last-child{border-bottom:0}
+.task .chip{justify-self:start;margin-top:2px}
+@media (max-width:520px){.task{grid-template-columns:1fr;gap:4px}}
+.chip.done2{background:var(--goodbg);color:var(--good)}
+.sub{font-family:var(--serif);font-size:19px;margin-top:28px}
+.five{grid-template-columns:repeat(4,minmax(0,1fr))}
+</style>
+
+<style>
+.score{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:26px}
+@media (max-width:680px){.score{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sc{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px 16px}
+.sc .lbl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--kicker);font-weight:600}
+.sc .ba{display:flex;align-items:baseline;gap:8px;margin-top:6px;flex-wrap:wrap}
+.sc .was{font-size:15px;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--pale)}
+.sc .arrow{color:var(--gold)}
+.sc .now{font-family:var(--serif);font-size:28px;line-height:1.1}
+.sc small{display:block;font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.4}
+table.mom{width:100%;border-collapse:collapse;font-size:15px;margin-top:6px}
+table.mom th,table.mom td{padding:9px 6px;text-align:right;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+table.mom th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--kicker);font-weight:600}
+table.mom th:first-child,table.mom td:first-child{text-align:left}
+table.mom td.hi{font-weight:600}
+table.mom td .yoy{display:block;font-size:11.5px;color:var(--good);font-weight:600}
+.tblwrap{overflow-x:auto}
+.wins{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+.wins li{display:grid;grid-template-columns:20px 1fr;gap:10px;font-size:15.5px}
+.wins li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:9px}
+.grp{margin-top:22px}
+.grp h3{margin-bottom:8px}
+</style>
+
+<div class="wrap"><div class="sheet">
+
+<section class="mast">
+  <div class="brandrow">
+    <div class="wordmark">Coral Med <span>Primary Care</span></div>
+    <div class="meta">Weekly KPI Report · Prepared for Dr. Ameer Moussa · November 12, 2026</div>
+  </div>
+  <div class="kicker">Week of November 5 to 11</div>
+  <h1>10 new reviews, 90% of calls answered, and more people finding you on Google.</h1>
+  <p class="lede">Where things stood when we started, where they are now, and what moved this week.</p>
+  <div class="score">
+    <div class="sc"><div class="lbl">Google reviews</div><div class="ba"><span class="was">18</span><span class="arrow">→</span><span class="now num">81</span></div><small>10 new this week, all 5.0★</small></div>
+    <div class="sc"><div class="lbl">Calls answered</div><div class="ba"><span class="was">87%</span><span class="arrow">→</span><span class="now num">90%</span></div><small>Last week vs this week</small></div>
+    <div class="sc"><div class="lbl">Average hold time</div><div class="ba"><span class="was">2:06</span><span class="arrow">→</span><span class="now num">1:24</span></div><small>Last week vs this week</small></div>
+    <div class="sc"><div class="lbl">Clicks from Google search</div><div class="ba"><span class="was">14</span><span class="arrow">→</span><span class="now num">23</span></div><small>Last week vs this week</small></div>
+    <div class="sc"><div class="lbl">Your average spot on Google</div><div class="ba"><span class="was">#18.7</span><span class="arrow">→</span><span class="now num">#5.9</span></div><small>Last 28 days vs the 28 before</small></div>
+    <div class="sc"><div class="lbl">Pages in Google</div><div class="ba"><span class="was">10</span><span class="arrow">→</span><span class="now num">17</span></div><small>Last week vs this week</small></div>
+  </div>
+</section>
+
+<section>
+  <div class="kicker">This week</div>
+  <h2>Three things that matter</h2>
+  <ul class="wins">
+    <li><span><strong>10 new Google reviews in one week.</strong> You're at 81 now, up from 18 when we started. 19 more and you hit 100.</span></li>
+    <li><span><strong>The front desk answered 90% of calls</strong> and hold time dropped from 2:06 to 1:24. From 9 AM to 4 PM they answered 130 of 137 calls.</span></li>
+    <li><span><strong>You're climbing for the search that matters most.</strong> For "primary care doctors Huntington Beach" you moved from around spot 25 to spot 12, close to the first page. Clicks from Google search went from 14 to 23 this week.</span></li>
+  </ul>
+</section>
+
+<section>
+  <div class="kicker">01 · New patients</div>
+  <h2>Holding at 25+ a month since August</h2>
+  <div class="grid2">
+    <div>
+      <div class="bars" role="img" aria-label="New patients by month: June 8, July 19, August 27, September 26">
+        <div class="br"><span>June</span><div class="track"><div class="fill" style="width:30%"></div></div><span class="v">8</span></div>
+        <div class="br"><span>July</span><div class="track"><div class="fill" style="width:70%"></div></div><span class="v">19</span></div>
+        <div class="br"><span>August</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="v">27</span></div>
+        <div class="br"><span>September</span><div class="track"><div class="fill gold" style="width:96%"></div></div><span class="v">26</span></div>
+      </div>
+      <p class="note">From your Office Ally report. October goes in once you confirm the count.</p>
+    </div>
+    <div class="box">
+      <h3>Next: where they come from</h3>
+      <p style="font-size:15px">The BAA is signed, so once you share the new patient tracker with us, this section shows <strong>new patients by source</strong> (Google search, Google ads, insurance, referral) and <strong>what each new patient from ads costs</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="kicker">02 · Google Business Profile</div>
+  <h2>10 new reviews in one week</h2>
+  <div class="grid2">
+    <div class="box">
+      <h3>Reviews</h3>
+      <div class="stat"><span>Total</span><span>81</span></div>
+      <div class="stat"><span>When we started</span><span>18</span></div>
+      <div class="stat"><span>New this week</span><span class="up">10</span></div>
+      <div class="stat"><span>Goal</span><span>100</span></div>
+    </div>
+    <div class="box">
+      <h3>What patients are saying</h3>
+      <p style="font-size:15px">The same themes keep coming up: you take the time to listen, the staff is friendly and professional, and Lydia gets named again and again. We're replying to every new review, and the replies never mention a visit or anyone's care.</p>
+    </div>
+  </div>
+  <div class="box" style="margin-top:14px">
+    <h3>What people search before they find you</h3>
+    <div class="stat"><span>"Weight loss injections Huntington Beach"</span><span>59</span></div>
+    <div class="stat"><span>"Coral Med reviews"</span><span>47</span></div>
+    <div class="stat"><span>"Medical weight loss clinic"</span><span>28</span></div>
+    <div class="stat"><span>"Weight loss shots Huntington Beach"</span><span>19</span></div>
+    <p class="note">Searches that showed your Google profile, June to November.</p>
+  </div>
+  <p class="call">At this pace you'll pass 100 reviews before the holidays. A quick ask at checkout keeps it going. Weight loss is still the #1 way new people find your profile, which is why your weight loss page now leads with insurance and Medicare.</p>
+</section>
+
+<section>
+  <div class="kicker">03 · Google Ads</div>
+  <h2>More clicks, and a cleaner way to count calls</h2>
+  <div class="grid2">
+    <div class="box">
+      <h3>This week vs last week</h3>
+      <div class="stat"><span>Calls Google credits to ads</span><span>11 <small style="color:var(--muted)">(13)</small></span></div>
+      <div class="stat"><span>Cost per call</span><span>$19.24 <small style="color:var(--muted)">($10.30)</small></span></div>
+      <div class="stat"><span>Spend</span><span>$211.69 <small style="color:var(--muted)">($133.93)</small></span></div>
+      <div class="stat"><span>Clicks</span><span>110 <small class="up">(83)</small></span></div>
+      <div class="stat"><span>Times shown</span><span>2,739 <small class="up">(2,336)</small></span></div>
+    </div>
+    <div class="box">
+      <h3>The $500 Google credit</h3>
+      <div class="stat"><span>Used so far</span><span>$286</span></div>
+      <div class="stat"><span>Left</span><span>$214</span></div>
+      <div class="stat"><span>At $40 a day</span><span>About 5 more days</span></div>
+      <div class="stat"><span>Then</span><span>Bills to your card on file</span></div>
+    </div>
+  </div>
+  <p class="call">Two things changed this week. We now count each caller once, so someone who calls three times isn't counted as three calls. That makes the number lower but more honest. And we raised the budget to $40 a day for enrollment season, so spend went up right away. Clicks were up 33%. Next week is the first full week at $40, so that's the real test.</p>
+</section>
+
+<section>
+  <div class="kicker">04 · Phones</div>
+  <h2>90% answered, less time on hold</h2>
+  <div class="grid2">
+    <div class="box">
+      <h3>Nov 5 to 10</h3>
+      <div class="stat"><span>Calls in</span><span>170</span></div>
+      <div class="stat"><span>Answered</span><span>153 (90%) <small class="up">(87%)</small></span></div>
+      <div class="stat"><span>Average hold time</span><span>1:24 <small class="up">(2:06)</small></span></div>
+      <div class="stat"><span>Callers put on hold</span><span>50 <small class="up">(56)</small></span></div>
+      <div class="stat"><span>Average call length</span><span>2:39</span></div>
+    </div>
+    <div class="box">
+      <h3>Answer rate by time of day</h3>
+      <div class="bars" role="img" aria-label="Answer rate: 8 to 9 AM 71%, 9 AM to 4 PM 95%, 4 to 5 PM 62%">
+        <div class="br"><span>8 to 9 AM</span><div class="track"><div class="fill gold" style="width:71%"></div></div><span class="v">10 of 14</span></div>
+        <div class="br"><span>9 AM to 4 PM</span><div class="track"><div class="fill" style="width:95%"></div></div><span class="v">130 of 137</span></div>
+        <div class="br"><span>4 to 5 PM</span><div class="track"><div class="fill bad" style="width:62%"></div></div><span class="v">8 of 13</span></div>
+      </div>
+      <p class="note">Wednesday's calls post tomorrow, so this covers Thursday to Tuesday.</p>
+    </div>
+  </div>
+  <p class="call">The middle of the day is nearly perfect. 9 of the 17 missed calls came in the first hour or the last hour. If someone can cover the phone from 8 to 9 and 4 to 5, the answer rate climbs to about 95%.</p>
+</section>
+
+<section>
+  <div class="kicker">05 · Google search</div>
+  <h2>Moving up for the searches that bring new patients</h2>
+  <div class="grid2">
+    <div class="box">
+      <h3>Last 28 days vs the 28 before</h3>
+      <div class="stat"><span>Clicks from Google</span><span>76 <small class="up">(58)</small></span></div>
+      <div class="stat"><span>Average position</span><span>5.9 <small class="up">(18.7)</small></span></div>
+      <div class="stat"><span>Click rate</span><span>7.1% <small class="up">(4.9%)</small></span></div>
+      <div class="stat"><span>"Primary care doctors Huntington Beach"</span><span>#12 <small class="up">(#25)</small></span></div>
+    </div>
+    <div class="box">
+      <h3>Your website in Google</h3>
+      <div class="stat"><span>Pages in Google's index</span><span>17 <small class="up">(10)</small></span></div>
+      <div class="stat"><span>Just requested</span><span>4 more</span></div>
+      <div class="stat"><span>Including</span><span>Regal IPA, Services, Wellness, Primary Care</span></div>
+    </div>
+  </div>
+  <p class="call">Seven more of your pages made it into Google this week. We asked Google to add the last four that matter, including your Regal IPA page, so Regal patients searching for a doctor can find you.</p>
+</section>
+
+<section>
+  <div class="kicker">06 · Website visitors</div>
+  <h2>A quieter week on the site</h2>
+  <div class="grid2">
+    <div class="box">
+      <h3>Nov 5 to 11</h3>
+      <div class="stat"><span>Visits</span><span>46 <small class="down">(74)</small></span></div>
+      <div class="stat"><span>From Google search</span><span>22 <small class="down">(43)</small></span></div>
+      <div class="stat"><span>Typed in directly</span><span>19 <small style="color:var(--muted)">(24)</small></span></div>
+      <div class="stat"><span>From ads</span><span>4 <small style="color:var(--muted)">(3)</small></span></div>
+    </div>
+    <div class="box">
+      <h3>What we're watching</h3>
+      <p style="font-size:15px">Visits dipped this week even though Google sent more clicks. Part of it is that Wednesday is still counting. We'll compare the two again next week. The visitors from Google search stayed longer: 64% engaged with the page, up from 53%.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="kicker">07 · What we delivered</div>
+  <h2>This week</h2>
+  <div class="grp">
+    <ul class="done">
+      <li>Google Ads raised to $40 a day through Dec 18, the Google credit covers the start</li>
+      <li>Ads now count each caller once, for a true cost per call</li>
+      <li>"Medical Weight Loss Program" headline swapped for "Physicals &amp; Preventive Care"</li>
+      <li>Growth plan: Google now, Facebook test in January</li>
+      <li>BAA signed and filed</li>
+      <li>Every key page now submitted to Google</li>
+      <li>Every review answered, including all 10 new ones</li>
+      <li>First weekly Google post is up: new patients welcome, with a Call now button</li>
+      <li>Anthem listing checked: right address and phone, accepting new patients</li>
+      <li>A weekly check on your reviews, Google profile, ads and search, so nothing slips</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="kicker">08 · Last week's plan</div>
+  <h2>Where each item stands</h2>
+  <div class="tasks">
+    <div class="task"><span class="chip good">Done</span><span>Count each ad caller once, and only calls over 60 seconds.</span></div>
+    <div class="task"><span class="chip good">Done</span><span>Push the remaining pages into Google. 17 are in, the last 4 are requested.</span></div>
+    <div class="task"><span class="chip good">Done</span><span>Facebook options. Sent as the growth plan: Google now, Facebook test in January.</span></div>
+    <div class="task"><span class="chip warn">This week</span><span>Real photos in the ads.</span></div>
+    <div class="task"><span class="chip warn">This week</span><span>Count Call button taps on the website as a goal.</span></div>
+    <div class="task"><span class="chip warn">This week</span><span>Daily missed-call list for the front desk, focused on 8 to 9 AM and 4 to 5 PM.</span></div>
+    <div class="task"><span class="chip warn">This week</span><span>Fix Provider Wire, US News and WebMD to match your Huntington Beach address.</span></div>
+    <div class="task"><span class="chip warn">Next 2 weeks</span><span>Restart reactivation emails and the newsletter.</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="kicker">09 · Next</div>
+  <h2>What we're doing next</h2>
+  <div class="tasks">
+    <div class="task"><span class="chip warn">Google profile</span><span>A new Google post every week. Next up: your Thanksgiving hours.</span></div>
+    <div class="task"><span class="chip warn">Insurance</span><span>Check Blue Shield's listing, and fix your Vitals profile, which still shows a Los Angeles address.</span></div>
+    <div class="task"><span class="chip warn">New patients</span><span>New patients by source and cost per new patient, once we have the tracker.</span></div>
+  </div>
+</section>
+
+<section style="background:var(--soft)">
+  <div class="kicker">What we need from you</div>
+  <h2>Quick asks</h2>
+  <ul class="asks">
+    <li><span class="cb"></span><span><strong>Regal:</strong> you're not showing up in Regal's online Doctor Finder. We searched your name and every Huntington Beach doctor they list. Can you ask your Regal contact why, and which medical group your contract runs through?</span></li>
+    <li><span class="cb"></span><span>Share the new patient tracker with danny@runratepartners.co. The BAA is signed, so we're covered.</span></li>
+    <li><span class="cb"></span><span>Make Danny's RingCentral user a Super Admin, so we can pull call reports and fix phone settings without needing you each time.</span></li>
+    <li><span class="cb"></span><span><strong>Zocdoc:</strong> your profile lists you as a Sleep Medicine specialist and shows "No availability in the next 6 months." Are you still using Zocdoc? If yes, we should open slots and fix the specialty. If not, we should turn off booking so patients aren't turned away.</span></li>
+    <li><span class="cb"></span><span>Anthem lists you as speaking Arabic, English, Farsi, French, Mandarin, Persian, Spanish and Tagalog. Is that right, or should it be English, Spanish and Arabic?</span></li>
+    <li><span class="cb"></span><span>Your October new patient count.</span></li>
+    <li><span class="cb"></span><span>Your current insurance list, for Nat and the ads.</span></li>
+    <li><span class="cb"></span><span>Who manages the office internet? One router setting needs to change so the RingCentral app works on office Wi-Fi.</span></li>
+  </ul>
+  <p class="sign"><strong>Danny Peña</strong><br>RunRate Partners</p>
+</section>
+
+</div>
+<p class="foot">Sources: Google Business Profile (reviews and search terms), Google Ads (Nov 5 to 11 vs Oct 29 to Nov 4, and promotions), RingCentral Analytics (Nov 5 to 10), Google Search Console (last 7 and 28 days, and page indexing), Google Analytics (Nov 5 to 11 vs Oct 29 to Nov 4), Regal Medical Group Doctor Finder, Anthem Find Care, Zocdoc. Counts only. No patient information is included.</p>
+</div>
+
+</body></html>
