@@ -1,0 +1,320 @@
+<!doctype html><html><head><meta name="robots" content="noindex,nofollow"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Coral Med November Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: one calm column on practice stationery. Summary, then one section per channel, then work done and next steps. */
+:root{
+  --canvas:#e9ebec; --paper:#ffffff; --soft:#f7f4ef; --soft2:#f2efe9;
+  --ink:#3d4a57; --muted:#6b7784; --kicker:#8aa2ad;
+  --gold:#c0a882; --btn:#d1bfa3; --line:#e4ded3; --pale:#e7dfd1;
+  --good:#4f7a5f; --goodbg:#e8f0ea; --warn:#9a6b1f; --warnbg:#f6eedd; --bad:#9b4b3a; --badbg:#f6e4df;
+  --serif:Georgia,"Times New Roman",serif;
+  --sans:Inter,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --canvas:#1d232a; --paper:#262e36; --soft:#2d353e; --soft2:#313a44;
+  --ink:#eef0f2; --muted:#aeb7c0; --kicker:#9fb6c0;
+  --gold:#cdb48c; --btn:#cdb48c; --line:#3a444f; --pale:#4a5560;
+  --good:#8fc0a0; --goodbg:#2b3a31; --warn:#e2b86a; --warnbg:#3d3424; --bad:#e49a87; --badbg:#3d2b27;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --canvas:#1d232a; --paper:#262e36; --soft:#2d353e; --soft2:#313a44;
+  --ink:#eef0f2; --muted:#aeb7c0; --kicker:#9fb6c0;
+  --gold:#cdb48c; --btn:#cdb48c; --line:#3a444f; --pale:#4a5560;
+  --good:#8fc0a0; --goodbg:#2b3a31; --warn:#e2b86a; --warnbg:#3d3424; --bad:#e49a87; --badbg:#3d2b27;
+  color-scheme:dark}
+body{background:var(--canvas);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6}
+.wrap{max-width:880px;margin:0 auto;padding-inline:16px;padding-block:32px 56px}
+.sheet{background:var(--paper);border-radius:6px;overflow:hidden}
+section{padding:38px clamp(20px,5vw,56px);border-top:1px solid var(--line)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5vw,40px);line-height:1.15}
+h2{font-size:clamp(23px,3.4vw,29px);line-height:1.2;margin-bottom:6px}
+h3{font-size:18px;line-height:1.3}
+p{margin:0;max-width:64ch}
+.kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--kicker);font-weight:600;margin-bottom:10px}
+.lede{color:var(--muted);margin-top:6px}
+.num{font-variant-numeric:tabular-nums}
+.mast{background:var(--soft);border-top:0}
+.brandrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:30px}
+.wordmark{font-family:var(--serif);font-size:22px}.wordmark span{color:var(--gold)}
+.meta{font-size:13px;color:var(--muted)}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:26px}
+.tile{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:16px}
+.tile b{display:block;font-family:var(--serif);font-weight:400;font-size:30px;line-height:1.1}
+.tile small{display:block;color:var(--muted);font-size:13px;line-height:1.4;margin-top:6px}
+.tile em{font-style:normal;font-size:12px;font-weight:600}
+.up{color:var(--good)}.down{color:var(--bad)}
+@media (max-width:680px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:22px}
+@media (max-width:640px){.grid2{grid-template-columns:1fr}}
+.box{background:var(--soft2);border-radius:6px;padding:18px 20px;min-width:0}
+.box h3{margin-bottom:10px}
+.stat{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}
+.stat:last-child{border-bottom:0}
+.stat span:last-child{font-variant-numeric:tabular-nums;font-weight:600}
+/* bars */
+.bars{display:grid;gap:9px;margin-top:6px}
+.br{display:grid;grid-template-columns:150px 1fr 74px;gap:10px;align-items:center;font-size:14px}
+.br .track{height:14px;background:var(--pale);border-radius:3px;overflow:hidden}
+.br .fill{height:100%;background:var(--ink)}
+.br .fill.gold{background:var(--gold)}
+.br .fill.bad{background:var(--bad)}
+.br .v{font-variant-numeric:tabular-nums;color:var(--muted);text-align:right}
+@media (max-width:520px){.br{grid-template-columns:110px 1fr 60px}}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+.call{margin-top:18px;border-left:3px solid var(--gold);padding:4px 0 4px 14px;font-size:15px}
+.chip{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:4px}
+.chip.good{background:var(--goodbg);color:var(--good)}.chip.warn{background:var(--warnbg);color:var(--warn)}.chip.bad{background:var(--badbg);color:var(--bad)}
+.done{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 24px}
+.done li{display:grid;grid-template-columns:20px 1fr;gap:8px;font-size:15px}
+.done li::before{content:"✓";color:var(--good);font-weight:700}
+@media (max-width:600px){.done{grid-template-columns:1fr}}
+.steps{display:grid;gap:12px;margin-top:16px}
+.step{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:0}
+@media (max-width:520px){.step{grid-template-columns:1fr;gap:6px}}
+.asks{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+.asks li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:15px}
+.cb{width:16px;height:16px;border:1.5px solid var(--gold);border-radius:3px;margin-top:4px}
+.sign{margin-top:28px;font-size:15px;color:var(--muted)}.sign strong{color:var(--ink);font-weight:600}
+.foot{text-align:center;font-size:12px;color:var(--muted);margin-top:18px}
+</style>
+
+<style>
+.tasks{display:grid;gap:0;margin-top:14px}
+.task{display:grid;grid-template-columns:96px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px;align-items:start}
+.task:last-child{border-bottom:0}
+.task .chip{justify-self:start;margin-top:2px}
+@media (max-width:520px){.task{grid-template-columns:1fr;gap:4px}}
+.chip.done2{background:var(--goodbg);color:var(--good)}
+.sub{font-family:var(--serif);font-size:19px;margin-top:28px}
+.five{grid-template-columns:repeat(4,minmax(0,1fr))}
+</style>
+
+<style>
+.score{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:26px}
+@media (max-width:680px){.score{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sc{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px 16px}
+.sc .lbl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--kicker);font-weight:600}
+.sc .ba{display:flex;align-items:baseline;gap:8px;margin-top:6px;flex-wrap:wrap}
+.sc .was{font-size:15px;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--pale)}
+.sc .arrow{color:var(--gold)}
+.sc .now{font-family:var(--serif);font-size:28px;line-height:1.1}
+.sc small{display:block;font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.4}
+table.mom{width:100%;border-collapse:collapse;font-size:15px;margin-top:6px}
+table.mom th,table.mom td{padding:9px 6px;text-align:right;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+table.mom th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--kicker);font-weight:600}
+table.mom th:first-child,table.mom td:first-child{text-align:left}
+table.mom td.hi{font-weight:600}
+table.mom td .yoy{display:block;font-size:11.5px;color:var(--good);font-weight:600}
+.tblwrap{overflow-x:auto}
+.wins{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+.wins li{display:grid;grid-template-columns:20px 1fr;gap:10px;font-size:15.5px}
+.wins li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:9px}
+.grp{margin-top:22px}
+.grp h3{margin-bottom:8px}
+</style>
+
+<div class="wrap"><div class="sheet">
+
+<section class="mast">
+  <div class="brandrow">
+    <div class="wordmark">Coral Med <span>Primary Care</span></div>
+    <div class="meta">Monthly KPI Report · Prepared for Dr. Ameer Moussa · November 24, 2026</div>
+  </div>
+  <div class="kicker">November 1 to 23 vs October 1 to 23</div>
+  <h1>More calls from ads, 14 new reviews, and Google showing you more than ever.</h1>
+  <p class="lede">Same 23 days of each month, side by side, so the comparison is fair. Final November numbers land December 1.</p>
+  <div class="score">
+    <div class="sc"><div class="lbl">Calls from ads</div><div class="ba"><span class="was">38</span><span class="arrow">→</span><span class="now num">52</span></div><small>+37%, Oct 1 to 23 vs Nov 1 to 23</small></div>
+    <div class="sc"><div class="lbl">Google reviews</div><div class="ba"><span class="was">71</span><span class="arrow">→</span><span class="now num">85</span></div><small>14 new in November, all 5.0★ (18 when we started)</small></div>
+    <div class="sc"><div class="lbl">Times you showed up on Google</div><div class="ba"><span class="was">772</span><span class="arrow">→</span><span class="now num">1,330</span></div><small>+72%, same 23 days</small></div>
+    <div class="sc"><div class="lbl">Clicks from Google search</div><div class="ba"><span class="was">57</span><span class="arrow">→</span><span class="now num">67</span></div><small>+18%, same 23 days</small></div>
+    <div class="sc"><div class="lbl">Your average spot on Google</div><div class="ba"><span class="was">#6.3</span><span class="arrow">→</span><span class="now num">#5.3</span></div><small>Same 23 days</small></div>
+    <div class="sc"><div class="lbl">Pages in Google</div><div class="ba"><span class="was">10</span><span class="arrow">→</span><span class="now num">22</span></div><small>Start of November vs today</small></div>
+  </div>
+</section>
+
+<section>
+  <div class="kicker">This month</div>
+  <h2>Three things that matter</h2>
+  <ul class="wins">
+    <li><span><strong>Ads brought in 52 calls in 23 days, up from 38</strong> in the same stretch of October. That's with a stricter count: since Nov 8, a person who calls three times counts once.</span></li>
+    <li><span><strong>14 new five-star reviews.</strong> You're at 85, every one answered. 15 more and you hit 100.</span></li>
+    <li><span><strong>Google showed you 72% more often</strong> than the same days in October, and you moved up a full spot on average. 12 more of your pages made it into Google this month.</span></li>
+  </ul>
+</section>
+
+<section>
+  <div class="kicker">01 · New patients</div>
+  <h2>21 new patients by mid-November</h2>
+  <div class="grid2">
+    <div>
+      <div class="bars" role="img" aria-label="New patients by month: June 8, July 19, August 27, September 26, November through the 16th 21">
+        <div class="br"><span>June</span><div class="track"><div class="fill" style="width:30%"></div></div><span class="v">8</span></div>
+        <div class="br"><span>July</span><div class="track"><div class="fill" style="width:70%"></div></div><span class="v">19</span></div>
+        <div class="br"><span>August</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="v">27</span></div>
+        <div class="br"><span>September</span><div class="track"><div class="fill" style="width:96%"></div></div><span class="v">26</span></div>
+        <div class="br"><span>October</span><div class="track"><div class="fill" style="width:0%"></div></div><span class="v">?</span></div>
+        <div class="br"><span>Nov (to 16th)</span><div class="track"><div class="fill gold" style="width:78%"></div></div><span class="v">21</span></div>
+      </div>
+      <p class="note">June to September from your Office Ally report. November from you on our Nov 12 call, including scheduled visits. October still needs your count.</p>
+    </div>
+    <div class="box">
+      <h3>What we heard from you</h3>
+      <p style="font-size:15px">A lot of new patients find you on their insurance's doctor list, then pick you because of your reviews. Two have told you they found you through AI search: one through Grok, one through ChatGPT, which named you the #1 primary care doctor in the area.</p>
+    </div>
+  </div>
+  <p class="call">Once every tracker row has a date and "how they heard," this section shows new patients by source and what each new patient from ads costs.</p>
+</section>
+
+<section>
+  <div class="kicker">02 · Google Ads</div>
+  <h2>More calls, at a higher budget</h2>
+  <div class="tblwrap"><table class="mom">
+    <thead><tr><th></th><th>Nov 1 to 23</th><th>Oct 1 to 23</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr><td>Calls from ads</td><td class="hi">52</td><td>38</td><td class="up">+37%</td></tr>
+      <tr><td>Cost per call</td><td class="hi">$15.13</td><td>$12.38</td><td class="down">+$2.75</td></tr>
+      <tr><td>Spend</td><td class="hi">$786.58</td><td>$470.59</td><td>+67%</td></tr>
+      <tr><td>Clicks</td><td class="hi">413</td><td>242</td><td class="up">+71%</td></tr>
+      <tr><td>Times shown</td><td class="hi">10,814</td><td>6,687</td><td class="up">+62%</td></tr>
+    </tbody>
+  </table></div>
+  <p class="call">The budget went from $25 to $40 a day on Nov 10 for enrollment season, so spend and calls both went up. Cost per call rose a bit, partly because October counted every repeat call and November counts each caller once. Google's $500 credit is now fully used, so ads bill your card. The budget drops back to $25 a day after Dec 18.</p>
+</section>
+
+<section>
+  <div class="kicker">03 · Google Business Profile</div>
+  <h2>14 new reviews, every one answered</h2>
+  <div class="grid2">
+    <div class="box">
+      <h3>Reviews</h3>
+      <div class="stat"><span>Total</span><span>85 · 5.0★</span></div>
+      <div class="stat"><span>New in November</span><span class="up">14</span></div>
+      <div class="stat"><span>When we started</span><span>18</span></div>
+      <div class="stat"><span>Goal</span><span>100</span></div>
+    </div>
+    <div class="box">
+      <h3>Profile activity</h3>
+      <div class="stat"><span>Calls from your profile</span><span>26 <small class="up">(Oct 21)</small></span></div>
+      <div class="stat"><span>Direction requests</span><span>56 <small style="color:var(--muted)">(Oct 77)</small></span></div>
+      <div class="stat"><span>Website clicks</span><span>24 <small style="color:var(--muted)">(Oct 40)</small></span></div>
+      <div class="stat"><span>All actions</span><span>106 <small style="color:var(--muted)">(Oct 138)</small></span></div>
+      <p class="note">November so far vs all of October. Google reports these a few days late, so November keeps growing. Calls already passed October.</p>
+    </div>
+  </div>
+  <p class="call">Weekly Google posts are going up again: new patients welcome on Nov 12 and Thanksgiving hours this week. At this pace you'll pass 100 reviews before the end of the year.</p>
+</section>
+
+<section>
+  <div class="kicker">04 · Phones</div>
+  <h2 id="phones-h">Phones</h2>
+  <div id="phones-body">
+    <p style="font-size:15px">November's full answer rate and hold time are being pulled from RingCentral and will be added here. The last full week we pulled (Nov 5 to 10) ran at 90% answered, with hold time down to 1:24 from 2:06.</p>
+  </div>
+</section>
+
+<section>
+  <div class="kicker">05 · Google search</div>
+  <h2>Showing up more, higher on the page</h2>
+  <div class="tblwrap"><table class="mom">
+    <thead><tr><th></th><th>Nov 1 to 23</th><th>Oct 1 to 23</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr><td>Times you showed up</td><td class="hi">1,330</td><td>772</td><td class="up">+72%</td></tr>
+      <tr><td>Clicks from Google</td><td class="hi">67</td><td>57</td><td class="up">+18%</td></tr>
+      <tr><td>Average position</td><td class="hi">#5.3</td><td>#6.3</td><td class="up">Up 1 spot</td></tr>
+      <tr><td>Pages in Google</td><td class="hi">22</td><td>10</td><td class="up">+12</td></tr>
+    </tbody>
+  </table></div>
+  <p class="call">Google is now showing you for a lot more searches. The click rate dipped (5.0% vs 7.4%) because many of those new searches are ones where you show lower on the page, which is normal when you start ranking for more terms. Two pages are still waiting to get in: your Services page and the blog post on choosing a primary care doctor.</p>
+</section>
+
+<section>
+  <div class="kicker">06 · Website visitors</div>
+  <h2>About 60 visits a week</h2>
+  <div class="grid2">
+    <div class="box">
+      <h3>Nov 1 to 23</h3>
+      <div class="stat"><span>Visits</span><span>199</span></div>
+      <div class="stat"><span>From Google search</span><span>94</span></div>
+      <div class="stat"><span>Typed in directly</span><span>82</span></div>
+      <div class="stat"><span>From ads</span><span>9</span></div>
+      <div class="stat"><span>From social</span><span>8</span></div>
+      <div class="stat"><span>From ChatGPT and other AI</span><span>3</span></div>
+    </div>
+    <div class="box">
+      <h3>Why there's no October comparison</h3>
+      <p style="font-size:15px">Your new Google Analytics started counting on Oct 20, so October only has 11 days of data. December will be the first full month-over-month comparison. Visitors from Google search are the most engaged: 57% interacted with the site. Most ad clicks turn into a phone call instead of a website visit, which is why ad visits stay low.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="kicker">07 · What we delivered in November</div>
+  <h2>The work behind the numbers</h2>
+  <div class="grp">
+    <ul class="done">
+      <li>BAA signed and filed</li>
+      <li>Ads raised to $40 a day for enrollment season</li>
+      <li>Ads count each caller once, for a true cost per call</li>
+      <li>"Medical Weight Loss Program" headline swapped for "Physicals &amp; Preventive Care"</li>
+      <li>Every key page submitted to Google: 10 to 22 in the index</li>
+      <li>Every new review answered, 14 this month</li>
+      <li>Weekly Google posts restarted</li>
+      <li>Growth plan: Google now, Facebook test in January</li>
+      <li>Anthem listing checked: correct, accepting new patients</li>
+      <li>Found you missing from Regal's Doctor Finder</li>
+      <li>Monthly billing set up so you never have to think about it</li>
+      <li>A weekly check on reviews, ads and search so nothing slips</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="kicker">08 · Last report's plan</div>
+  <h2>Where each item stands</h2>
+  <div class="tasks">
+    <div class="task"><span class="chip good">Done</span><span>Reply to every review and post on Google weekly.</span></div>
+    <div class="task"><span class="chip good">Done</span><span>Check Anthem's listing.</span></div>
+    <div class="task"><span class="chip warn">December</span><span>Real photos of you and the office in the ads.</span></div>
+    <div class="task"><span class="chip warn">December</span><span>Count Call button taps on your website as a goal.</span></div>
+    <div class="task"><span class="chip warn">December</span><span>Daily missed-call list for the front desk, focused on 8 to 9 AM and 4 to 5 PM.</span></div>
+    <div class="task"><span class="chip warn">December</span><span>Fix your Vitals, WebMD, US News and Provider Wire listings to match Huntington Beach.</span></div>
+    <div class="task"><span class="chip warn">December</span><span>Restart the newsletter and reactivation emails.</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="kicker">09 · December</div>
+  <h2>What's next</h2>
+  <div class="tasks">
+    <div class="task"><span class="chip warn">Ads</span><span>Stay at $40 a day through Dec 18, then back to $25 for the holiday closure. Review cost per call at the end of the month.</span></div>
+    <div class="task"><span class="chip warn">Google</span><span>Weekly posts: same-day sick visits, then physicals before the year ends.</span></div>
+    <div class="task"><span class="chip warn">AI search</span><span>Claim your ChatGPT business listing so the info it gives patients is yours.</span></div>
+    <div class="task"><span class="chip warn">Report</span><span>Final November numbers on Dec 1, and the first full month-over-month website comparison in January.</span></div>
+  </div>
+</section>
+
+<section style="background:var(--soft)">
+  <div class="kicker">What we need from you</div>
+  <h2>Quick asks</h2>
+  <ul class="asks">
+    <li><span class="cb"></span><span>Your October new patient count.</span></li>
+    <li><span class="cb"></span><span>Tracker: a date and "how they heard" on every row. A counts-only summary tab would be even better, so we never need to see patient names.</span></li>
+    <li><span class="cb"></span><span>Regal: which medical group your contract runs through, so we can get you on their Doctor Finder.</span></li>
+    <li><span class="cb"></span><span>ChatGPT listing: restart the claim and send us the new code. We'll add it for you.</span></li>
+    <li><span class="cb"></span><span>Make Danny's RingCentral user a Super Admin.</span></li>
+    <li><span class="cb"></span><span>Look over the Facebook plan before January.</span></li>
+  </ul>
+  <p class="sign">Happy Thanksgiving to you and the team.<br><strong>Danny Peña &amp; Josh Goode</strong><br>RunRate Partners</p>
+</section>
+
+</div>
+<p class="foot">Sources: Google Ads (Nov 1 to 23 vs Oct 1 to 23), Google Search Console (same dates and page indexing), Google Business Profile (reviews and monthly activity), Google Analytics (Nov 1 to 23), RingCentral Analytics. Counts only. No patient information is included.</p>
+</div>
+
+</body></html>
